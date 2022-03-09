@@ -9,6 +9,83 @@ const Engineer = require('./lib/Engineer');
 const render = require('./src/pageTemp')
 
 const createEmploy = ()  =>  {
+return inquirer.prompt  ([
+{
+        type: 'input',
+        name: 'name',
+        message: 'What is the name of your employee.',
+        validate: nameInput => {
+            if (nameInput) {
+                return true;
+        } else {
+            console.log("Please enter the name of your employee!");
+            return false;
+         }
+    }
+},
+{
+    type: 'list',
+    name: 'role',
+    message: 'What role does this employee have?',
+    choices: ['worker','Intern','Engineer']
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'Please enter the email of the employee.',
+    validate: emailInput => {
+        if (emailInput) {
+            return true;
+     }
+    }  
+},
+{
+type: 'input',
+ name: 'github',
+ message: 'What is Github?',
+ when: (input) => input.role === "Engineer",
+            validate: nameInput => {
+        if (nameInput ) {
+         return true;
+         } else {
+                    console.log ("ERR")
+                }
+            }
+},
+{
+type: 'input',
+name: 'id',
+message: "What is the employee's ID.",
+    validate: nameInput => {
+        if  (isNaN(nameInput)) {
+            console.log ("Please enter the employee's ID!")
+            return false; 
+        } else {
+            return true;
+        }
+    }  
+},
+{
+    type: 'input',
+    name: 'school',
+    message: "Please enter the intern's school",
+    when: (input) => input.role === "Intern",
+    validate: nameInput => {
+        if (nameInput) {
+            return true;
+        } else {
+            console.log ("Please enter the intern's school!")
+        }
+    }
+},
+{
+    type: 'confirm',
+    name: 'confirmAddEmployee',
+    message: 'anyone else??',
+    default: false
+  
+}
 
-    
+])
+
 }
