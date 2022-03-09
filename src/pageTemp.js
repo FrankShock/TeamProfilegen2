@@ -37,7 +37,7 @@ const genEngine = function (engineer) {
     `;
     };
 const genManag = function (manager) {
-        return `
+return `
         <div id="bgcolor" class="card employee-card manager-card">
                <div class= "card-header text-center">
                    <h2 class="card-title">${manager.name()}</h2>
@@ -48,8 +48,32 @@ const genManag = function (manager) {
            <li class="list-group-item">ID: ${manager.id()}</li>
            <li class="list-group-item">Email: <a href="mailto:${manager.email()}">${manager.email()}</a></li>
             <li class="list-group-item">Office number: <a href="tel:${manager.OfficeNumber()}">${manager.OfficeNumber()}</a></li>
-                   </ul>
-               </div>
-           </div>
-               `;
-           };
+         </ul>
+         </div>
+    </div>
+`;
+};
+
+createHTML = (data) => {
+    let htmlArray= [];
+ for (let i = 0; i < data.length; i++) {
+const employee = data[i];
+const role = employee.getRole();
+if (role === 'Intern') {
+    const internCard = genIntern (employee);
+    htmlArray.push(internCard);
+  }
+if (role === 'Engineer') {
+    const engineerCard = genEngine (employee);
+    htmlArray.push(engineerCard);
+  } 
+if (role === 'Manager') {
+    const managerCard = genManag (employee);
+    pageArray.push(managerCard);
+  }
+}
+const EmpCards = htmlArray.join('');
+const genTeam = genTeamPage(EmpCards);
+return genTeam;
+
+};
