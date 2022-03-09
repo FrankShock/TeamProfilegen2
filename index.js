@@ -27,7 +27,7 @@ return inquirer.prompt  ([
     type: 'list',
     name: 'role',
     message: 'What role does this employee have?',
-    choices: ['worker','Intern','Engineer']
+    choices: ['Intern','Engineer']
 },
 {
     type: 'input',
@@ -80,12 +80,22 @@ message: "What is the employee's ID.",
 },
 {
     type: 'confirm',
-    name: 'confirmAddEmployee',
+    name: 'confirmAddEmp',
     message: 'anyone else??',
     default: false
   
 }
-
 ])
+.then(empData  =>  {
+    let  {id, name, github, role, confirmAddEmp, email, school} = empData;
+    let  employ;
+if (role === "Engineer"){
+    employ = new Engineer(id, name, github, email);
+}
+
+
+}
+
+
 
 }

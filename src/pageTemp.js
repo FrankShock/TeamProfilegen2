@@ -93,7 +93,7 @@ return `
 <header  class="text-centered">
 <h1 class="page-title text-secondary bg-dark py-2 px-3">Your Team</h1>
 </header>
-<main class="columns is-multiline">
+<main class="columns">
 ${EmpCards}
 </main>
 </body>
@@ -101,3 +101,5 @@ ${EmpCards}
 `;
 
 };
+
+module.exports = createHTML;
