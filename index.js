@@ -1,8 +1,7 @@
 const inquirer = require('inquirer');
-const jest = require('jest');
+
 const fs = require('fs');
-const path = require('path');
-const Employee = require('./lib/Employee');
+
 const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
@@ -183,11 +182,11 @@ const writeFile = (data) => {
 
 createEmploy()
 .then(createManag)
-.then(teamArray =>  {
+.then(teamArray => {
     return render(teamArray);
 })
-.then(proPage => {
-    return writeFile(proPage);
+.then(createHTML => {
+    return writeFile(createHTML);
 })
 .catch(err => {console.log(err);});
 
