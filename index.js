@@ -7,6 +7,7 @@ const Manager = require('./lib/Manager');
 const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const render = require('./src/pageTemp')
+const teamArray  =[]
 
 const createEmploy = ()  =>  {
 return inquirer.prompt  ([
@@ -56,8 +57,8 @@ type: 'input',
 type: 'input',
 name: 'id',
 message: "What is the employee's ID.",
-    validate: nameInput => {
-        if  (isNaN(nameInput)) {
+    validate: idInput => {
+        if  (isNaN(idInput)) {
             console.log ("Please enter the employee's ID!")
             return false; 
         } else {
@@ -92,10 +93,104 @@ message: "What is the employee's ID.",
 if (role === "Engineer"){
     employ = new Engineer(id, name, github, email);
 }
+if (role === "intern"){
+    employ = new Intern(id, name,school, email);
+}
+teamArray.push(employ);
 
-
+if 
+(confirmAddEmp){
+    return createEmploy(teamArray);
+}
+else {
+    return teamArray;
 }
 
 
+})
+};
 
+const createManag = ()  =>{
+return inquirer.prompt  ([
+{
+    type: 'input',
+    name: 'name',
+    message: 'HELLO new manager What is your name?!.',
+        validate: nameInput => {
+if (nameInput) {
+return true;
+} else {
+console.log("Please enter your name?");
+        return false;
 }
+}
+},
+{
+    type: 'input',
+    name: 'email',
+    message: 'Please enter the email of the employee.',
+    validate: emailInput => {
+        if (emailInput) {
+            return true;
+     }
+    }  
+},
+{
+    type: 'input',
+    name: 'id',
+    message: "What is the employee's ID.",
+        validate: idInput => {
+            if  (isNaN(idInput)) {
+                console.log ("Please enter the employee's ID!")
+                return false; 
+            } else {
+                return true;
+            }
+        }  
+    },
+    {
+        type: 'input',
+        name: 'offiNumber',
+        message: "What is your office number?",
+            validate: offiNumInput => {
+                if  (isNaN(offiNumInput)) {
+                    console.log ("Please enter your office number?")
+                    return false; 
+                } else {
+                    return true;
+                }
+}  
+}
+    
+])
+.then(ManagData =>  {
+const {name, email, offiNumInput, id} = ManagData;
+const manag = new  Manager(name, email, offiNumInput, id);
+teamArray.push(manag);
+})
+
+};
+const writeFile = (data) => {
+    fs.writeFile('./Result/index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("error")
+        }
+    })
+};
+
+createEmploy()
+.then(createManag)
+.then(teamArray =>  {
+    return render(teamArray);
+})
+.then(proPage => {
+    return writeFile(proPage);
+})
+.catch(err => {console.log(err);});
+
+
+
+
