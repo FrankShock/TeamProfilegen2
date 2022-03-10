@@ -183,6 +183,8 @@ const writeFile = (data) => {
 createEmploy()
 .then(createManag)
 .then(teamArray => {
+    console.log(teamArray) //see if anything show up here. I doubt anything will!
+    //
     return render(teamArray);
 })
 .then(createHTML => {
