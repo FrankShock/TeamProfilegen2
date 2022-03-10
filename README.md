@@ -4,7 +4,7 @@
 ## Description
 This is a custom team  profile/layout generator. You can create new positions from Intern, engineer, and manager. You can have their name, contact, and personal info displayed.    
 ## Images
-![Screenshot1](https://github.com/FrankShock/TeamProfilegen2/tree/main/Video/Screenshot1.JPG)
+![Screenshot1](https://github.com/FrankShock/TeamProfilegen2/blob/main/Video/Screenshot1.JPG)
 
 ## Installation 
 * Clone this repository to use this application on local machine.
